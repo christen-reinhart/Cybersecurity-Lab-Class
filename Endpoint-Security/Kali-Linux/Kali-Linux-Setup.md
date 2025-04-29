@@ -63,11 +63,11 @@ sudo apt install -y virtualbox-guest-x11
 sudo reboot
 
 ## 6. Take a VirtualBox Snapshot
-### 1. Once everything is configured and updated:
+#### 1. Once everything is configured and updated:
 
-### 2. Right-click your Kali VM > Take Snapshot.
+#### 2. Right-click your Kali VM > Take Snapshot.
 
-### 3. Name it something like Fresh Kali Install.
+#### 3. Name it something like Fresh Kali Install.
 
 ## Final Notes
 
