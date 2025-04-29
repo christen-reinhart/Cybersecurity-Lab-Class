@@ -47,7 +47,6 @@
 
 ## Part 4: ⚡ Prepare Ubuntu Server for Juice Shop
 
-```bash
 # Update system
 sudo apt update && sudo apt upgrade -y
 
