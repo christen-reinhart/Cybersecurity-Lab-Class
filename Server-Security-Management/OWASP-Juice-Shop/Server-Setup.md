@@ -43,8 +43,6 @@
 6. **Finish installation** and **reboot**.
 7. **Eject ISO** after reboot.
 
----
-
 ## Part 4: ⚡ Prepare Ubuntu Server for Juice Shop
 
 # Update system
