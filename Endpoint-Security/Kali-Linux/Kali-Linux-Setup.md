@@ -71,10 +71,10 @@ sudo reboot
 
 ## Final Notes
 
-### 1. Kali Linux is intended for penetration testing, digital forensics, and cybersecurity training.
+#### 1. Kali Linux is intended for penetration testing, digital forensics, and cybersecurity training.
 
-### 2. Always use Kali Linux responsibly and legally.
+#### 2. Always use Kali Linux responsibly and legally.
 
-### 3. Never use Kali Linux tools on unauthorized systems.
+#### 3. Never use Kali Linux tools on unauthorized systems.
 
 
