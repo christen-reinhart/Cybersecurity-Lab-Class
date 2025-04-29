@@ -50,55 +50,64 @@
 ```bash
 # Update system
 sudo apt update && sudo apt upgrade -y
-
+```bash
 # Install Git
 sudo apt install git -y
-
+```bash
 # Install Node.js and npm
 sudo apt install nodejs npm -y
 
+```bash
 # Confirm installation versions
 nodejs --version
 npm --version
 git --version
 
 Part 5: 🍹 Install and Launch Juice Shop
-
-# Clone the Juice Shop repository
+Clone the Juice Shop repository
+```bash
 git clone https://github.com/juice-shop/juice-shop.git
 cd juice-shop
 
-# Install dependencies
-npm install
-
-# Start the application
+Install dependencies
+```bash
+npm install --legacy-peer-deps
+Note: If you encounter issues related to libxmljs, you might need to install or rebuild libxmljs2:
+```bash
+npm uninstall libxmljs
+npm install libxmljs2 --legacy-peer-deps
+If there are errors related to missing bindings (e.g., xmljs.node), make sure to rebuild the dependencies:
+```bash
+npm rebuild
+Start the application
+```bash
 npm start
-
 Expected output:
 
+nginx
+```bash
 Server listening on port 3000
-
 Part 6: 🌐 Access Juice Shop
 Open a web browser and navigate to:
 
+```bash
 http://<Ubuntu_VM_IP>:3000
 
 Part 7: 🧹 (Optional) Run Juice Shop in the Background
+Install screen
 
-# Install screen
 sudo apt install screen -y
-
-# Create a screen session
+Create a screen session
+```bash
 screen -S juice
-
-# Start Juice Shop
+Start Juice Shop
+```bash
 npm start
 
-# Detach screen (Ctrl + A, then D)
+Detach screen (Ctrl + A, then D)
+To reattach screen later
 
-# To reattach screen later
 screen -r juice
-
 
 📋 Summary
 
@@ -110,13 +119,14 @@ Step	Action
 5	Clone and start Juice Shop
 6	Access Juice Shop via browser
 
-browser
 📢 Notes
 Default port: 3000
 
 Allow port through firewall (if UFW is active):
-
+```bash
 sudo ufw allow 3000/tcp
 
 🚀 Lab Ready
 Congratulations! You now have OWASP Juice Shop deployed inside your Cybersecurity Lab environment, ready for testing and learning.
+
+
