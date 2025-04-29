@@ -1,99 +1,73 @@
-Parrot Security OS Installation in VirtualBox
-Overview
-Parrot Security OS is a lightweight, Debian-based Linux distribution built for penetration testing, forensics, reverse engineering, and privacy.
-This guide explains how to properly download, install, and set up Parrot Security in a VirtualBox virtual machine.
+# Parrot Security OS Installation in VirtualBox
 
-Official Website: ParrotSec
+## Overview
+Parrot Security OS is a lightweight, Debian-based Linux distribution built for penetration testing, forensics, and privacy.  
+This guide explains how to properly download, install, and set up Parrot Security OS in a VirtualBox virtual machine.
 
-Step 1: Download Parrot Security ISO
-Visit the official download page: ParrotSec Downloads
+Official Website: [ParrotSec](https://parrotsec.org/)
 
-Download the Parrot Security Edition ISO for 64-bit systems (Parrot-security-<version>_amd64.iso).
+## Step 1: Download Parrot Security ISO
+- Visit the official download page: [ParrotSec Downloads](https://parrotsec.org/download/)
+- Download the **Parrot Security Edition** ISO for 64-bit systems (example: `Parrot-security-6.2_amd64.iso`).
 
-Step 2: Create a New Virtual Machine in VirtualBox
-Open VirtualBox
+## Step 2: Create a New Virtual Machine in VirtualBox
+- Open VirtualBox
+- Click **New**
+- Name: `Parrot-Security`
+- Type: `Linux`
+- Version: `Debian (64-bit)`
+- Memory Size: `4096 MB` minimum (`8192 MB` recommended)
+- Hard Disk: Create a virtual hard disk now
+- Disk File Type: `VDI (VirtualBox Disk Image)`
+- Storage: `Dynamically allocated`
+- Size: `60 GB` minimum (`80-100 GB` recommended)
 
-Click New
+## Step 3: Attach the ISO and Start Installation
+- Select your Parrot VM → Click **Settings**.
+- Go to **Storage**.
+- Under **Controller: IDE**, click the empty disk icon.
+- Click **Choose a disk file...** and select your downloaded Parrot ISO.
+- Click **OK**.
+- Start the VM.
 
-Name: Parrot-Security
+## Step 4: Install Parrot Security (Full Install, Not Live Boot)
+- At the boot menu, select **Install** or **Graphical Install**.
+- Follow the installation wizard:
+  - Set Language, Region, Keyboard Layout.
+  - Hostname: `parrot`
+  - Create user account (e.g., `user` / `Password1234`).
+  - Set root password if needed (or leave blank to use sudo).
+- Partitioning:
+  - Guided - use entire disk.
+  - No swap partition is necessary unless preferred.
 
-Type: Linux
+After installation completes:
+- **Shutdown** the VM.
+- **Detach** the ISO from the Virtual Drive before restarting.
 
-Version: Debian (64-bit)
+## Step 5: Update Parrot OS
+After logging into the VM, update the system:
 
-Memory Size: 4096 MB (minimum), 8192 MB (recommended for performance)
-
-Hard Disk: Create a virtual hard disk now
-
-Disk File Type: VDI (VirtualBox Disk Image)
-
-Storage: Dynamically allocated
-
-Size: At least 60 GB (recommended 80–100 GB for labs)
-
-Step 3: Attach the Parrot ISO and Start Installation
-Select your Parrot VM > Click Settings
-
-Go to Storage
-
-Under Controller: IDE, click the empty disk icon
-
-Click Choose a disk file... and select your downloaded Parrot ISO
-
-Click OK
-
-Start the VM
-
-Step 4: Perform Full Installation (Not Live Boot)
-At the boot menu, DO NOT select "Try Parrot".
-
-Choose "Install" or "Graphical Install".
-
-Follow the Debian Installer Wizard:
-
-Language, Region, Keyboard Layout
-
-Hostname: parrot
-
-Set user account (example: user / Password1234)
-
-Set root password (or leave blank if using sudo)
-
-Disk Partitioning:
-
-Guided - use entire disk
-
-Erase and install (since it's a new VM)
-
-No swap partition is necessary unless desired.
-
-Finish installation and reboot.
-
-⚡️ After reboot, make sure you eject the ISO from the Virtual Drive:
-
-Go to Devices → Optical Drives → Uncheck the mounted ISO.
-
-Step 5: Update the Parrot System
-Once logged in:
-
+```bash
 sudo apt update
 sudo apt full-upgrade -y
 sudo reboot
 
-✅ This brings your system fully up to date with the latest Parrot security patches and software.
+Step 6: Install VirtualBox Guest Additions (Optional)
+To enable better screen resolution and clipboard sharing:
 
-Step 6: Optional - Install VirtualBox Guest Additions
-To improve VM performance (clipboard sharing, screen resizing, etc.):
-
-sudo apt install -y virtualbox-guest-x11
+sudo apt install virtualbox-guest-x11 -y
 sudo reboot
 
-If that package is missing, you may need to mount Guest Additions manually from VirtualBox menu.
+If VirtualBox Guest Additions installation is missing, you can mount the VirtualBox Guest Additions ISO manually from VirtualBox's Devices menu.
 
 Final Notes
-After updates, it’s recommended to take a VirtualBox Snapshot for rollback safety.
+After updates, it is recommended to take a VirtualBox Snapshot for backup.
 
-Parrot is now ready for penetration testing, digital forensics, red teaming, or detection engineering labs.
+Parrot Security is now ready for use in penetration testing, digital forensics, threat hunting, or cybersecurity detection engineering labs.
 
-Use tools like Burp Suite, Wireshark, Metasploit, Zeek, and others already pre-installed.
+## Additional Resources
+- [ParrotSec Official Documentation](https://docs.parrotsec.org/)
+- [VirtualBox User Manual](https://www.virtualbox.org/manual/UserManual.html)
+
 
