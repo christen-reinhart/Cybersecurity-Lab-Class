@@ -63,18 +63,18 @@ sudo apt install -y virtualbox-guest-x11
 sudo reboot
 
 ## 6. Take a VirtualBox Snapshot
-### Once everything is configured and updated:
+### 1. Once everything is configured and updated:
 
-### Right-click your Kali VM > Take Snapshot.
+### 2. Right-click your Kali VM > Take Snapshot.
 
-### Name it something like Fresh Kali Install.
+### 3. Name it something like Fresh Kali Install.
 
 ## Final Notes
 
-### Kali Linux is intended for penetration testing, digital forensics, and cybersecurity training.
+### 1. Kali Linux is intended for penetration testing, digital forensics, and cybersecurity training.
 
-### Always use Kali Linux responsibly and legally.
+### 2. Always use Kali Linux responsibly and legally.
 
-### Never use Kali Linux tools on unauthorized systems.
+### 3. Never use Kali Linux tools on unauthorized systems.
 
 
