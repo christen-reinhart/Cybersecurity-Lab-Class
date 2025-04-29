@@ -54,7 +54,7 @@ This guide explains how to install and configure Kali Linux in VirtualBox for yo
 - After installation completes, log in.
 - Open Terminal and update the system:
 
-```bash
+- bash
 sudo apt update && sudo apt full-upgrade -y
 
 ## Install VirtualBox Guest Additions (optional but recommended for better integration):
