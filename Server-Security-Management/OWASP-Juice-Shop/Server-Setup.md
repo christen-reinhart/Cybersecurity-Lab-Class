@@ -43,8 +43,11 @@
 6. **Finish installation** and **reboot**.
 7. **Eject ISO** after reboot.
 
+---
+
 ## Part 4: ⚡ Prepare Ubuntu Server for Juice Shop
 
+```bash
 # Update system
 sudo apt update && sudo apt upgrade -y
 
@@ -54,76 +57,99 @@ sudo apt install git -y
 # Install Node.js and npm
 sudo apt install nodejs npm -y
 
-
 # Confirm installation versions
 nodejs --version
 npm --version
 git --version
+```
 
-Part 5: 🍹 Install and Launch Juice Shop
-Clone the Juice Shop repository
+---
 
+## Part 5: 🍹 Install and Launch Juice Shop
+
+```bash
+# Clone the Juice Shop repository
 git clone https://github.com/juice-shop/juice-shop.git
 cd juice-shop
 
-Install dependencies
-
+# Install dependencies
 npm install --legacy-peer-deps
-Note: If you encounter issues related to libxmljs, you might need to install or rebuild libxmljs2:
+```
 
+### If there are errors:
+```bash
+# libxmljs-related issues:
 npm uninstall libxmljs
 npm install libxmljs2 --legacy-peer-deps
-If there are errors related to missing bindings (e.g., xmljs.node), make sure to rebuild the dependencies:
 
+# Missing bindings:
 npm rebuild
-Start the application
+```
 
+```bash
+# Start the application
 npm start
-Expected output:
+```
 
-nginx
-
+**Expected output:**
+```
 Server listening on port 3000
-Part 6: 🌐 Access Juice Shop
-Open a web browser and navigate to:
+```
 
+---
 
+## Part 6: 🌐 Access Juice Shop
+
+- Open a web browser and navigate to:
+```
 http://<Ubuntu_VM_IP>:3000
+```
 
-Part 7: 🧹 (Optional) Run Juice Shop in the Background
-Install screen
+---
 
+## Part 7: 🧹 (Optional) Run Juice Shop in the Background
+
+```bash
+# Install screen
 sudo apt install screen -y
-Create a screen session
 
+# Create a screen session
 screen -S juice
-Start Juice Shop
 
+# Start Juice Shop
 npm start
 
-Detach screen (Ctrl + A, then D)
-To reattach screen later
-
+# Detach screen (Ctrl + A, then D)
+# To reattach screen later:
 screen -r juice
+```
 
-📋 Summary
+---
 
-Step	Action
-1	Download Ubuntu Server ISO
-2	Create a VM in VirtualBox
-3	Install Ubuntu Server
-4	Install Git, Node.js, and npm
-5	Clone and start Juice Shop
-6	Access Juice Shop via browser
+## 📋 Summary
 
-📢 Notes
-Default port: 3000
+| Step | Action                         |
+|------|--------------------------------|
+| 1    | Download Ubuntu Server ISO     |
+| 2    | Create a VM in VirtualBox      |
+| 3    | Install Ubuntu Server          |
+| 4    | Install Git, Node.js, and npm  |
+| 5    | Clone and start Juice Shop     |
+| 6    | Access Juice Shop via browser  |
 
-Allow port through firewall (if UFW is active):
+---
 
+## 📢 Notes
+
+- Default port: **3000**
+- Allow port through firewall (if UFW is active):
+
+```bash
 sudo ufw allow 3000/tcp
+```
 
-🚀 Lab Ready
+---
+
+## 🚀 Lab Ready
+
 Congratulations! You now have OWASP Juice Shop deployed inside your Cybersecurity Lab environment, ready for testing and learning.
-
-
