@@ -1,80 +1,133 @@
-# Installing Kali Linux VM in VirtualBox
+# 🛡️ Kali Linux Installation & Lab Setup Guide (VirtualBox)
 
-This guide explains how to install and configure Kali Linux in VirtualBox for your Cybersecurity Lab.
+## 📥 Part 1: Download Required Files
 
-## Prerequisites
-- Oracle VirtualBox installed: [Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- Kali Linux ISO downloaded: [Download Kali Linux](https://www.kali.org/get-kali/)
+- [Download VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Download Kali Linux ISO](https://www.kali.org/get-kali/#kali-platforms)
+  - Choose the **Installer** ISO for VirtualBox (e.g., `kali-linux-2024.1-installer-amd64.iso`)
 
-## Step-by-Step Installation
+---
 
-### 1. Download Kali Linux ISO
-- Go to the official [Kali Downloads Page](https://www.kali.org/get-kali/).
-- Download the latest **Kali Linux Installer (ISO)**.
-- Verify the SHA256 checksum if you want to validate the ISO integrity.
+## 🛠️ Part 2: Create Kali VM in VirtualBox
 
-### 2. Create a New Virtual Machine
-- Open **VirtualBox** and click **New**.
-- Name: `Kali-Linux`
-- Type: `Linux`
-- Version: `Debian (64-bit)`
-- Memory: **4 GB RAM** (4096 MB) minimum recommended
-- Hard Disk: Create a virtual hard disk now
-  - File Type: VDI (VirtualBox Disk Image)
-  - Storage: Dynamically allocated
-  - Size: At least **50 GB**
+1. **Open VirtualBox** → Click **New**
+2. Set:
+   - **Name**: `Kali-Linux`
+   - **Type**: Linux
+   - **Version**: Debian (64-bit)
+3. Set:
+   - **Memory**: `4096 MB` (Minimum)
+   - **Processors**: 2 (Minimum)
+   - **Video Memory**: 128 MB
+4. **Hard Disk**:
+   - Create new VDI disk
+   - Dynamically allocated
+   - Size: 40–60 GB
+5. **Mount ISO**:
+   - Settings → Storage → Controller: IDE → Choose your Kali ISO
+6. **Network**:
+   - Adapter 1: Attached to **Bridged Adapter** (preferred for lab use)
 
-### 3. Configure VM Settings
-- Select your new VM > **Settings**:
-  - **System > Processor**: Set to at least **2 CPUs**.
-  - **Display > Video Memory**: Increase to **128 MB**.
-  - **Storage**:
-    - Click the empty optical drive.
-    - Click the **CD icon** and **Choose a disk file**.
-    - Select your **Kali Linux ISO** file.
-  - **Network**:
-    - Attached to: **Bridged Adapter** or **NAT** depending on your setup.
+---
 
-### 4. Install Kali Linux
-- Start the VM.
-- Select **Graphical Install**.
-- Language: English
-- Location: United States (or your region)
-- Keyboard: American English
-- Hostname: `kali`
-- Domain name: Leave empty (unless you have one).
-- Set up a username and password for the system.
-- Disk Partitioning:
-  - Use entire disk
-  - Choose default partitions
-- Continue with installation until complete.
-- **When prompted to install GRUB bootloader**, select **Yes** and choose your main drive (`/dev/sda`).
+## 💿 Part 3: Install Kali Linux
 
-### 5. Initial Configuration
-- After installation completes, log in.
-- Open Terminal and update the system:
+1. Start VM and select **Graphical Install**
+2. Follow on-screen instructions:
+   - Language: English
+   - Keyboard: US
+   - Disk Partition: Use entire disk (automatic partitioning)
+   - User Account: Set non-root user and password
+3. Complete installation and reboot
+4. Remove ISO when prompted
 
-- bash
+---
+
+## 🔄 Part 4: Update Kali Linux
+
+After first boot, open terminal and run:
+
+```bash
 sudo apt update && sudo apt full-upgrade -y
+```
 
-## Install VirtualBox Guest Additions (optional but recommended for better integration):
+(Optional but recommended):
 
-sudo apt install -y virtualbox-guest-x11
+```bash
+sudo apt install -y kali-linux-default
+```
+
+This ensures full toolset is installed.
+
+---
+
+## ⚙️ Part 5: Install VirtualBox Guest Additions (Optional)
+
+1. Insert Guest Additions CD (Devices > Insert Guest Additions CD Image)
+2. Run in terminal:
+
+```bash
+sudo apt install -y build-essential dkms linux-headers-$(uname -r)
+sudo mkdir /media/cdrom
+sudo mount /dev/cdrom /media/cdrom
+cd /media/cdrom
+sudo ./VBoxLinuxAdditions.run
 sudo reboot
+```
 
-## 6. Take a VirtualBox Snapshot
-#### 1. Once everything is configured and updated:
+---
 
-#### 2. Right-click your Kali VM > Take Snapshot.
+## 🧰 Part 6: Essential Security Tools for Testing
 
-#### 3. Name it something like Fresh Kali Install.
+These tools are often pre-installed on Kali, but you can reinstall/update as needed:
 
-## Final Notes
+```bash
+sudo apt install -y metasploit-framework burpsuite zaproxy nmap wireshark hydra sqlmap john nikto net-tools gobuster seclists hashcat bettercap dnsenum smbclient enum4linux remmina screenfetch
+```
 
-#### 1. Kali Linux is intended for penetration testing, digital forensics, and cybersecurity training.
+Verify installation:
 
-#### 2. Always use Kali Linux responsibly and legally.
+```bash
+msfconsole --version
+nmap --version
+```
 
-#### 3. Never use Kali Linux tools on unauthorized systems.
+---
 
+## 🧪 Optional: Take a Snapshot
 
+After completing your installation and tool setup, take a VirtualBox snapshot:
+
+- Right-click VM → **Take Snapshot**
+- Name it something like: `Fresh Kali Install with Tools`
+
+---
+
+## 📚 References
+
+- [Kali Linux Documentation](https://www.kali.org/docs/)
+- [Kali Downloads](https://www.kali.org/get-kali/)
+- [Metasploit Docs](https://docs.metasploit.com/)
+- [VirtualBox Manual](https://www.virtualbox.org/manual/UserManual.html)
+- [OWASP ZAP](https://www.zaproxy.org/)
+- [Burp Suite Community Edition](https://portswigger.net/burp/communitydownload)
+
+---
+
+## ✅ Summary
+
+| Step | Action                          |
+|------|---------------------------------|
+| 1    | Download Kali ISO & VirtualBox  |
+| 2    | Create and configure VM         |
+| 3    | Install Kali Linux              |
+| 4    | Update and upgrade system       |
+| 5    | Install Guest Additions         |
+| 6    | Install essential tools         |
+| 7    | Take VirtualBox Snapshot        |
+
+---
+
+## 🚀 Lab Ready
+
+Kali Linux is now installed and configured with core tools for penetration testing, network scanning, web vulnerability analysis, password cracking, and more.
