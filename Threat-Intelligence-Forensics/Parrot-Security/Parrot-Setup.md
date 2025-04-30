@@ -52,16 +52,19 @@ After logging into the VM, update the system:
 sudo apt update
 sudo apt full-upgrade -y
 sudo reboot
+```
 
-Step 6: Install VirtualBox Guest Additions (Optional)
+## Step 6: Install VirtualBox Guest Additions (Optional)
 To enable better screen resolution and clipboard sharing:
 
+```bash
 sudo apt install virtualbox-guest-x11 -y
 sudo reboot
+```
 
 If VirtualBox Guest Additions installation is missing, you can mount the VirtualBox Guest Additions ISO manually from VirtualBox's Devices menu.
 
-Final Notes
+## Final Notes
 After updates, it is recommended to take a VirtualBox Snapshot for backup.
 
 Parrot Security is now ready for use in penetration testing, digital forensics, threat hunting, or cybersecurity detection engineering labs.
@@ -69,5 +72,6 @@ Parrot Security is now ready for use in penetration testing, digital forensics, 
 ## Additional Resources
 - [ParrotSec Official Documentation](https://docs.parrotsec.org/)
 - [VirtualBox User Manual](https://www.virtualbox.org/manual/UserManual.html)
+
 
 
