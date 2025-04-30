@@ -150,6 +150,16 @@ sudo ufw allow 3000/tcp
 
 ---
 
+## 📚 References
+
+- [OWASP Juice Shop GitHub](https://github.com/juice-shop/juice-shop)
+- [OWASP Juice Shop Project Page](https://owasp.org/www-project-juice-shop/)
+- [Ubuntu Server Documentation](https://ubuntu.com/server/docs)
+- [Node.js Official Site](https://nodejs.org/)
+- [VirtualBox User Manual](https://www.virtualbox.org/manual/UserManual.html)
+
+---
+
 ## 🚀 Lab Ready
 
 Congratulations! You now have OWASP Juice Shop deployed inside your Cybersecurity Lab environment, ready for testing and learning.
