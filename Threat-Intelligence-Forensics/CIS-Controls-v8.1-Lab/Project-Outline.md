@@ -3,7 +3,7 @@
 
 ## 📘 Overview
 
-This lab is designed to introduce learners to the CIS Controls v8.1, focusing on Implementation Group 1 (IG1), which represents essential cyber hygiene practices. By the end of this lab, participants will have hands-on experience in implementing key security controls on a Windows 10 system.
+This lab is designed to introduce learners to the [CIS Controls v8.1](https://www.cisecurity.org/controls/v8-1), focusing on Implementation Group 1 (IG1), which represents essential cyber hygiene practices. By the end of this lab, participants will have hands-on experience in implementing key security controls on a Windows 10 system.
 
 ## 🎯 Objectives
 
