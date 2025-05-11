@@ -1,135 +1,174 @@
-# 🛠️ Burp Suite Cheat Sheet v1.0
+# 🧰 Eric Zimmerman Tools Cheat Sheet v1.0
 
-By Chris Dale (@chrisadale)  
-[SANS Offensive Operations](https://sans.org/offensive-operations)
-
----
-
-## 🎯 Purpose
-
-This cheat sheet enhances usability and productivity in **Burp Suite**, the go-to tool for web application penetration testing.  
-Burp Suite offers features such as Repeater, Intruder, Sequencer, Extender, and an integrated Chromium browser.
+By SANS DFIR  
+[https://ericzimmerman.github.io/](https://ericzimmerman.github.io/)
 
 ---
 
-## 🧭 Global Hotkeys
+## 🛠️ Tools Covered
 
-| Shortcut         | Action                        |
-|------------------|-------------------------------|
-| `Ctrl-I`         | Send to Intruder              |
-| `Ctrl-R`         | Send to Repeater              |
-| `Ctrl-S`         | Search in editor              |
-| `Ctrl-.`         | Go to next selection          |
-| `Ctrl-M`         | Go to previous selection      |
-| `Ctrl-A`         | Select all                    |
-| `Ctrl-Z`         | Undo                          |
-| `Ctrl-Y`         | Redo                          |
+- LECmd (LNK files)
+- PECmd (Prefetch files)
+- JLECmd (Jump Lists)
+- bstrings (String searching)
+- AppCompatCacheParser (Shimcache)
+- AmcacheParser (Amcache.hve)
 
 ---
 
-## 🧰 Navigational Hotkeys
+## 📌 Common Usage
 
-| Shortcut             | Action                      |
-|----------------------|-----------------------------|
-| `Ctrl-Shift-T`       | Target Tab                  |
-| `Ctrl-Shift-P`       | Proxy Tab                   |
-| `Ctrl-Shift-R`       | Repeater Tab                |
-| `Ctrl-Shift-I`       | Intruder Tab                |
-| `Ctrl-Shift-O`       | Project Options Tab         |
-| `Ctrl-Shift-D`       | Dashboard Tab               |
-| `Ctrl-=`             | Next tab                    |
-| `Ctrl--`             | Previous tab                |
+- Export formats supported: CSV, JSON, HTML
+- Use `--mp` for higher precision timestamps
+- Most tools support exporting multiple formats simultaneously
+- Chocolatey package available: `EricZimmermanTools`
 
 ---
 
-## 🔣 Encoding / Decoding Hotkeys
+## 📂 LNK Files with LECmd
 
-| Shortcut             | Action                                      |
-|----------------------|---------------------------------------------|
-| `Ctrl-B`             | Base64 encode selection                     |
-| `Ctrl-Shift-B`       | Base64 decode selection                     |
-| `Ctrl-H`             | Encode HTML entities                        |
-| `Ctrl-Shift-H`       | Decode HTML entities                        |
-| `Ctrl-U`             | URL encode selection                        |
-| `Ctrl-Shift-U`       | URL decode selection                        |
+### Basic Usage:
+```bash
+LECmd.exe -f <file>
+LECmd.exe -d <directory>
+```
 
----
+### Key Data:
+- Target timestamps
+- Volume & Target ID info
+- Absolute path
 
-## 💬 Tool Specific Shortcuts
-
-| Shortcut             | Action                                      |
-|----------------------|---------------------------------------------|
-| `Ctrl-F`             | Forward Request (Proxy)                     |
-| `Ctrl-T`             | Toggle Proxy Intercept On/Off              |
-| `Ctrl-Space`         | Send Request (Repeater)                     |
-| Double-click tab     | Rename tab                                  |
+### Advanced:
+```bash
+LECmd.exe --all
+```
 
 ---
 
-## ✍️ Editor Shortcuts
+## 📦 Prefetch Files with PECmd
 
-| Shortcut                   | Action                                |
-|----------------------------|---------------------------------------|
-| `Ctrl-D`                   | Delete current line                   |
-| `Ctrl-Delete`              | Delete word                           |
-| `Ctrl-Backspace`          | Delete word backward                  |
-| `Ctrl-Home / End`          | Jump to start / end of document       |
-| `Ctrl-Shift-Home / End`    | Select to start / end of document     |
-| `Ctrl-Left / Right`        | Jump to prev/next word                |
-| `Ctrl-Shift-Left / Right`  | Select to prev/next word              |
+### Basic Usage:
+```bash
+PECmd.exe -f <file>
+PECmd.exe -d <directory>
+```
 
----
+### Export to CSV/HTML:
+```bash
+PECmd.exe -d <directory> --csv c:\temp --html c:\temp\html
+```
 
-## 📡 Burp Collaborator
+### Key Data:
+- Execution timestamps
+- Total runs
+- Referenced files/directories
 
-Monitor callbacks from vulnerable apps via unique DNS names. Supports:
-
-- DNS
-- HTTP/S
-- SMTP/SMTPS
-
-Use the **Taborator** extension for easier interaction with Burp Collaborator.
-
----
-
-## 🧪 Hunting for Vulnerabilities – Useful Extensions
-
-### Recon & Scanning
-
-- **Param Miner**: Find unlinked parameters
-- **Backslash Powered Scanner**: Detect unusual transformations
-- **Software Vulnerability Scanner**: Match versions with known CVEs
-- **HTTP Request Smuggler**: Launch HTTP Request Smuggling attacks
-- **Active Scan++**: Detect XML, Host Header, Input transformations
-- **Retire.js**: Identify outdated JavaScript & CVEs
-
-### Authorization and Tokens
-
-- **Autorize**: Test role-based access issues
-- **JSON Web Tokens**: Decode, verify, attack JWTs
-- **SAML Raider**: Inspect, edit, re-sign SAML messages
-
-### Logging and Speed
-
-- **Logger++**: Log scanner/intruder attacks, filter by status
-- **Turbo Intruder**: Scriptable, high-speed HTTP attack engine
-- **Taborator**: Enhance Collaborator tracking
+### Precision Timestamps:
+```bash
+PECmd.exe --mp
+```
 
 ---
 
-## 🔌 REST API
+## 📋 Jump Lists with JLECmd
 
-Enable from User Options (default: `http://127.0.0.1:1337`).
+### Basic Usage:
+```bash
+JLECmd.exe -f <file>
+JLECmd.exe -d <directory>
+```
 
-| Task | Example Command |
-|------|------------------|
-| Headless Mode | `java -jar -Xmx4g -Djava.awt.headless=true /path/to/burp.jar` |
-| List Issue Types | `curl http://127.0.0.1:1337/v0.1/knowledge_base/issue_definitions` |
-| Scan URLs | `curl -X POST http://127.0.0.1:1337/v0.1/scan -d '{ "urls": ["http://target/"] }'` |
-| Check Scan Status | `curl http://127.0.0.1:1337/v0.1/scan/<task_id>` |
+### Key Data:
+- App ID
+- DestList data
+- Embedded LNKs
+
+### Advanced:
+```bash
+JLECmd.exe --ld --fd --appIDs <app_ids>
+JLECmd.exe --withDir
+JLECmd.exe --dumpTo <outdir>
+```
 
 ---
 
-**Converted by: Christen Reinhart**  
-**Original Author: Chris Dale**  
-**Source: Burp Suite Cheat Sheet v1.0**
+## 🔍 String Searching with bstrings
+
+### Basic Usage:
+```bash
+bstrings -f <file>
+```
+
+### Search Specific String:
+```bash
+bstrings -f <file> --ls "keyword"
+```
+
+### Use Regular Expressions:
+```bash
+bstrings -f <file> --lr email
+```
+
+### Useful Switches:
+- `--off` : show offsets
+- `-x` : max string length
+- `-m` : min string length
+- `--cp` : select code page
+- `-p` : list built-in regex patterns
+- `--fr` / `--fs` : multiple regex or strings
+
+---
+
+## 🧠 Shimcache with AppCompatCacheParser
+
+### Basic Usage:
+```bash
+AppCompatCacheParser.exe -f <path_to_SYSTEM> --csv c:\temp
+```
+
+### Memory Loaded Registry:
+```bash
+AppCompatCacheParser.exe --csv c:\temp
+```
+
+### Key Data:
+- Full path to executable
+- Execution flag
+
+### Advanced:
+```bash
+AppCompatCacheParser.exe -d
+```
+
+---
+
+## 🗂️ Amcache.hve with AmcacheParser
+
+### Basic Usage:
+```bash
+AmcacheParser.exe -f <Amcache.hve> --csv c:\temp
+```
+
+### Key Data:
+- FullPath
+- SHA-1
+- FileIDLastWriteTimestamp
+- MFTEntryNumber / SequenceNumber
+
+### Advanced:
+```bash
+AmcacheParser.exe -b <blacklist> -w <whitelist> -i
+```
+
+---
+
+## 🔗 References
+
+- [Eric Zimmerman's Tools GitHub](https://ericzimmerman.github.io/)
+- Chocolatey: `choco install ericzimmermantools`
+- Can be used with [Timeline Explorer](https://ericzimmerman.github.io/)
+
+---
+
+**Maintained by: Christen Reinhart**  
+**Source: Eric Zimmerman Tools Cheat Sheet v1.0**
