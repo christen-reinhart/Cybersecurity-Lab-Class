@@ -158,3 +158,126 @@ rita delete zeus_analysis # Delete a dataset
 ## 🎉 Conclusion
 
 You’ve now built a powerful threat hunting lab using Zeek and RITA v5! You can import more PCAPs, automate log ingestion, or integrate RITA with SIEM tools like Splunk for even deeper visibility.
+
+# Version 2.0
+
+# Installing and Using RITA v5.0.4 with Zeek on Ubuntu 24.04
+
+**Last Updated:** May 11, 2025
+
+This guide walks through the complete, verified process of installing and running RITA v5.0.4 using Docker and Zeek on a clean Ubuntu 24.04 system.
+
+---
+
+## ✅ Prerequisites
+
+- Ubuntu 24.04 (fresh install)
+- Internet access
+- Administrative (sudo) privileges
+
+---
+
+## 🔧 Step 1: Update the System
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install curl wget git -y
+```
+
+---
+
+## 🐳 Step 2: Install Docker
+
+```bash
+sudo apt install ca-certificates curl gnupg lsb-release -y
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg]   https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+sudo systemctl enable docker
+sudo systemctl start docker
+```
+
+---
+
+## 📦 Step 3: Download and Install RITA v5.0.4
+
+```bash
+cd ~
+wget https://github.com/activecm/rita/releases/download/v5.0.4/rita-v5.0.4.tar.gz
+tar -xvzf rita-v5.0.4.tar.gz
+cd rita-v5.0.4-installer
+./install_rita.sh localhost
+```
+
+---
+
+## 📥 Step 4: Install Zeek Docker Script
+
+```bash
+sudo wget -O /usr/local/bin/zeek https://raw.githubusercontent.com/activecm/docker-zeek/master/zeek
+sudo chmod +x /usr/local/bin/zeek
+```
+
+---
+
+## 🧪 Step 5: Analyze a PCAP File
+
+```bash
+# Create log directory
+mkdir -p ~/zeek-logs/zeus24
+
+# Parse the PCAP
+zeek readpcap ~/Downloads/zeus_24hr.pcap ~/zeek-logs/zeus24
+```
+
+---
+
+## 🧠 Step 6: Import Logs into RITA
+
+```bash
+rita import --logs ~/zeek-logs/zeus24 --database zeus24
+```
+
+---
+
+## 📊 Step 7: Export Results or View in Terminal
+
+### Option 1: Export to CSV
+
+```bash
+rita view zeus24 --stdout > zeus24_analysis.csv
+```
+
+### Option 2: Use the Built-In TUI
+
+```bash
+rita view zeus24
+```
+
+Then press `/` to begin searching inside the TUI.
+
+---
+
+## 🧹 Optional Cleanup
+
+```bash
+docker container stop rita-clickhouse rita-syslog-ng
+docker container rm rita-clickhouse rita-syslog-ng
+```
+
+---
+
+## 🔄 Notes
+
+- You do **not** need to use the `latest` tag — use verified release versions like `v5.0.4`
+- The helper script `zeek` is essential for working with PCAPs in Docker
+- The RITA CLI automatically launches containers when needed
+
+---
+
+**Maintained by:** Christen Reinhart  
+**Tested On:** Ubuntu 24.04 + Docker 24.0  
