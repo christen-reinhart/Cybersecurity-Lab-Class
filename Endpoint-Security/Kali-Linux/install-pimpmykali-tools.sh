@@ -62,6 +62,8 @@ pip3 install pyftpdlib
 
 # echo "[*] Verifying VirtualBox additions..."
 # apt install -y linux-headers-$(uname -r) virtualbox-guest-x11
+
+echo "[*] Installing VMware Guest Additions..."
 apt install -y open-vm-tools open-vm-tools-desktop linux-headers-$(uname -r)
 
 echo "[+] All tools have been installed."
