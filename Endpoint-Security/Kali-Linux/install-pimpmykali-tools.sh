@@ -60,7 +60,8 @@ pipx ensurepath
 echo "[*] Installing pyftpdlib (again if needed)..."
 pip3 install pyftpdlib
 
-echo "[*] Verifying VirtualBox additions..."
-apt install -y linux-headers-$(uname -r) virtualbox-guest-x11
+# echo "[*] Verifying VirtualBox additions..."
+# apt install -y linux-headers-$(uname -r) virtualbox-guest-x11
+apt install -y open-vm-tools open-vm-tools-desktop linux-headers-$(uname -r)
 
 echo "[+] All tools have been installed."
